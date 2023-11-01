@@ -18,19 +18,15 @@ public class orbOfLight : MonoBehaviour
     void Start()
     {
         mainCam = Camera.main;
-        maxHealth=50; 
+        maxHealth=100; 
         currentHealth=maxHealth;
         healthBar.setMax(maxHealth);
     }
 
     // Update is called once per frame
     void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.Space)){
-            TakeDamage(10);
-        }        
+    {  
         DetectObjectWithRaycast();
-
     }
 
 
@@ -41,18 +37,16 @@ public class orbOfLight : MonoBehaviour
             Vector2 mousePosition = mainCam.ScreenToWorldPoint(Input.mousePosition);
             RaycastHit2D[] hit = Physics2D.RaycastAll(mousePosition, Vector2.zero);
             foreach (var collider in hit)
-            {
-            if (collider != null)
-            {
-                // perform actions on the clicked object here
-                if(collider.transform.name=="TheOrb"){
-                    skilleTree.showTree();
+                {
+                if (collider != null)
+                {
+                    // perform actions on the clicked object here
+                    if(collider.transform.name=="TheOrb"){
+                        skilleTree.showTree();
+                    }
                 }
-                
             }
-            
         }
-    }
     }
 
     public void TakeDamage(int damage){
